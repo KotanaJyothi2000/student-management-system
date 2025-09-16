@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Results</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Search Results for "<span th:text="${keyword}"></span>"</h1>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>DOB</th>
+        <th>Skills</th>
+        <th>Address</th>
+        <th>PhoneNumber</th>
+        <th>Status</th>
+    </tr>
+    <tr th:each="student : ${searchResults}">
+        <td th:text="${student.studentId}"></td>
+        <td th:text="${student.studentName}"></td>
+        <td th:text="${student.email}"></td>
+        <td th:text="${student.dob}"></td>
+        <td th:text="${student.skills}"></td>
+        <td th:text="${student.address}"></td>
+        <td th:text="${student.phoneNumber}"></td>
+        <td th:text="${student.status}"></td>
+    </tr>
+</table>
+
+<br>
+<a th:href="@{/student-ui}">Back to Student List</a>
+</body>
+</html>

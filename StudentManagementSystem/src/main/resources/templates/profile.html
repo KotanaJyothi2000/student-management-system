@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Profile</title>
+</head>
+<body>
+
+<h2>User Profile</h2>
+<form action="/profile/update" method="post" enctype="multipart/form-data">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <div>
+        <label>About Me:</label><br/>
+        <textarea name="aboutMe" rows="4" cols="50"
+                  th:text="${user.aboutMe}">[[${user.aboutMe}]]</textarea>
+    </div>
+
+    <div>
+        <label>Upload Profile Picture:</label>
+        <input type="file" name="profilePic"/>
+    </div>
+
+    <div>
+        <button type="submit">Update Profile</button>
+    </div>
+</form>
+<form th:action="@{/profile/delete-profilepic}" method="post">
+    <button type="submit">Delete Profile Pic</button>
+</form>
+
+<!-- Show current profile image -->
+<div th:if="${user.profilePicPath}">
+    <h3>Current Profile Picture:</h3>
+    <img th:src="@{'/uploads/' + ${user.profilePicPath}}" width="150" height="150"/>
+</div>
+
+</body>
+</html>
